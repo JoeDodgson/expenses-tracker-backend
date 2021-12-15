@@ -55,6 +55,8 @@
     "vary": "^1.1.2"
   },
   "scripts": {
+    "start": "node index",
+    "dev": "nodemon index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -66,5 +68,8 @@
   "bugs": {
     "url": "https://github.com/JoeDodgson/expenses-tracker-backend/issues"
   },
-  "homepage": "https://github.com/JoeDodgson/expenses-tracker-backend#readme"
+  "homepage": "https://github.com/JoeDodgson/expenses-tracker-backend#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }
