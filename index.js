@@ -4,6 +4,10 @@ const expensesRouter = require("./routes/api/expenses");
 
 const app = express();
 
+// Set up body parser middleware to be able to handle json and urlencoded data
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 // Expenses API routes
 app.use("/api/expenses", expensesRouter);
 
