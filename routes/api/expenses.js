@@ -76,4 +76,19 @@ router.put("/:id", (req, res) => {
     }
 });
 
+// Delete expense
+router.delete("/:id", (req, res) => {
+    // Obtain expense id from url parameter
+    const expenseId = parseInt(req.params.id);
+    
+    // Check if an expense with the provided id exists
+    const found = expenses.some(expense => expense.id === expenseId);
+    
+    if (found) {
+        res.json({expenses: expenses.filter(expense => expense.id !== expenseId)});
+    } else {
+        res.status(400).json({ messge: `No expense with the id of ${expenseId}` });
+    }
+});
+
 module.exports = router;
