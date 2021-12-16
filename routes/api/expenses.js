@@ -9,7 +9,9 @@ router.post("/", (req, res) => {
     const { name, date, cost, formattedCost, type } = req.body;
 
     if (!name || !date || !cost || !formattedCost || !type) {
-        return res.status(400).json({ messge: "Please include name, date, cost, formatted cost and type" });
+        return res.status(400).json({ 
+            message: "Please include name, date, cost, formatted cost and type",
+        });
     }
 
     // TODO - create new expense in the database
@@ -23,7 +25,10 @@ router.post("/", (req, res) => {
     }
     expenses.push(newExpense);
 
-    res.json(expenses);
+    res.json({ 
+        expenses: expenses,
+        message: "New expense created"
+    });
 });
 
 // Get (read) all expenses
@@ -42,9 +47,9 @@ router.get("/:id", (req, res) => {
     const found = expenses.some(expense => expense.id === expenseId);
     
     if (found) {
-        res.json((expenses.filter(expense => expense.id === expenseId)));
+        res.json({ expense: expenses.filter(expense => expense.id === expenseId) });
     } else {
-        res.status(400).json({ messge: `No expense with the id of ${expenseId}` });
+        res.status(400).json({ message: `No expense with the id of ${expenseId}` });
     }
 });
 
@@ -70,9 +75,9 @@ router.put("/:id", (req, res) => {
                 expense.type = type ? type : expense.type;
             }
         })
-        res.json((expenses.filter(expense => expense.id === expenseId)));
+        res.json({ expenses: expenses.filter(expense => expense.id === expenseId) });
     } else {
-        res.status(400).json({ messge: `No expense with the id of ${expenseId}` });
+        res.status(400).json({ message: `No expense with the id of ${expenseId}` });
     }
 });
 
@@ -87,7 +92,7 @@ router.delete("/:id", (req, res) => {
     if (found) {
         res.json({expenses: expenses.filter(expense => expense.id !== expenseId)});
     } else {
-        res.status(400).json({ messge: `No expense with the id of ${expenseId}` });
+        res.status(400).json({ message: `No expense with the id of ${expenseId}` });
     }
 });
 
